@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.24.0 (4a2a0458)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: my-go-app
+  name: my-go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: my-go-app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.24.0 (4a2a0458)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: my-go-app
+    spec:
+      containers:
+        - env:
+            - name: DB_HOST
+              value: postgres
+            - name: DB_NAME
+              value: my_pgdb
+            - name: DB_PASSWORD
+              value: alpha123
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_SSL_MODE
+              value: disable
+            - name: DB_USER
+              value: postgres
+          image: behramkhanzada/go-postgres:v1
+          name: my-go-app
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
