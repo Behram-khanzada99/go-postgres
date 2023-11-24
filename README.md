@@ -1,4 +1,6 @@
-# go-postgres
+# Go-Postgres
+# Go and Postgres Application
+
 1. The "main.go" is running the CRUD operations on indefinite Goroutines which are concurrent safe. <br />
 2. CRUD operations are called in main.go file by entering a specific number for each function from the menu.<br />
 
